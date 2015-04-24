@@ -1,0 +1,10 @@
+{
+  "name": "khromov/query-monitor-included-files",
+  "description": "Shows number of included files in admin bar and in the footer of each page load. Requires Query Monitor.",
+  "keywords": ["wordpress", "debug"],
+  "license": "GPL2",
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}
