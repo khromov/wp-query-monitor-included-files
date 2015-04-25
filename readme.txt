@@ -9,8 +9,7 @@ License: GPL2
 Shows number of included files in admin bar and in the footer of each page load. Requires Query Monitor.
 
 == Description ==
-This plugin lets you see the number of included files for each page load in the admin bar. You can also see the full list of
-included files and the order in which they were included.
+This plugin lets you see the number of included files for each page load in the admin bar. You can also see the full list of included files and the order in which they were included.
 
 **Usage**
 
