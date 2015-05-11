@@ -26,13 +26,19 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
             <th scope="col">
               <?php echo __('Included files','query-monitor'); ?>
             </th>
+            <th scope="col">
+              <?php echo __('Component','query-monitor'); ?>
+            </th>
           </tr>
         </thead>
         <tbody>
           <?php foreach($data['included_files'] as $file) : ?>
             <tr>
-              <td>
-                <?php echo $file; ?>
+              <td class="qm-ltr">
+                <?php echo esc_html($file); ?>
+              </td>
+              <td class="qm-nowrap">
+                <?php echo QM_Util::get_file_component($file)->name; ?>
               </td>
             </tr>
           <?php endforeach; ?>

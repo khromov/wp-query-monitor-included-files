@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Query Monitor: Included files
  * Description: Shows number of included files in Query Monitor
- * Version: 1.0
+ * Version: 1.1
  * Author: khromov
  * GitHub Plugin URI: khromov/wp-query-monitor-included-files
  */
