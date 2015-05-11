@@ -34,5 +34,9 @@ Install this plugin, install Query Monitor. Check the admin bar.
 
 == Changelog ==
 
+= 1.1 =
+* Now shows which component loaded each file (Core, plugins, theme)
+* File names are now escaped before output
+
 = 1.0 =
 * Initial release
