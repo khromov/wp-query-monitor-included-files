@@ -18,9 +18,47 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
    */
   public function output() {
     $data = $this->collector->get_data();
+    $opcache_enabled = function_exists('opcache_get_status');
     ?>
-    <!-- Print stats for included files -->
+    <!-- Print total stats for included files -->
     <div class="qm" id="<?php echo esc_attr($this->collector->id())?>">
+      <table cellspacing="0">
+        <thead>
+        <tr>
+          <th scope="col">
+            <?php echo __('Total number of included files','query-monitor'); ?>
+          </th>
+          <th scope="col">
+            <?php echo __('Total file size','query-monitor'); ?>
+          </th>
+          <th scope="col">
+            <?php echo __('Total OPCache memory consumption','query-monitor'); ?>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="qm-ltr">
+            <?php echo $data['included_files_number']; ?>
+          </td>
+          <td class="qm-ltr">
+            <?php echo $data['total_filesize_kb']; ?> KB
+          </td>
+          <td class="qm-nowrap">
+            <?php
+              if($opcache_enabled)
+                echo $data['total_opcache_filesize_kb'] . " KB";
+              else
+                echo "N/A";
+            ?>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Print stats for included files -->
+    <div class="qm" id="<?php echo esc_attr($this->collector->id())?>-aggregated">
       <table cellspacing="0">
         <thead>
         <tr>
@@ -32,6 +70,9 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
           </th>
           <th scope="col">
             <?php echo __('Total file size','query-monitor'); ?>
+          </th>
+          <th scope="col">
+            <?php echo __('Zend OPCache memory consumption','query-monitor'); ?>
           </th>
         </tr>
         </thead>
@@ -47,11 +88,21 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
             <td class="qm-nowrap">
               <?php echo $component_stats['size_kb'] ?> KB
             </td>
+            <td class="qm-nowrap">
+              <?php
+              if($opcache_enabled)
+                echo $component_stats['opcache_size_kb'] . " KB";
+              else
+                echo "N/A";
+              ?>
+            </td>
           </tr>
         <?php endforeach; ?>
         </tbody>
       </table>
     </div>
+
+
 
     <!-- Print detailed included files info -->
     <div class="qm" id="<?php echo esc_attr($this->collector->id())?>-full">
