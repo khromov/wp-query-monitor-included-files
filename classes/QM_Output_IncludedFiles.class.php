@@ -19,7 +19,42 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
   public function output() {
     $data = $this->collector->get_data();
     ?>
+    <!-- Print stats for included files -->
     <div class="qm" id="<?php echo esc_attr($this->collector->id())?>">
+      <table cellspacing="0">
+        <thead>
+        <tr>
+          <th scope="col">
+            <?php echo __('Included files by component','query-monitor'); ?>
+          </th>
+          <th scope="col">
+            <?php echo __('Number of included files','query-monitor'); ?>
+          </th>
+          <th scope="col">
+            <?php echo __('Total file size','query-monitor'); ?>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($data['stats'] as $component => $component_stats) : ?>
+          <tr>
+            <td class="qm-ltr">
+              <?php echo esc_html($component); ?>
+            </td>
+            <td class="qm-ltr">
+              <?php echo esc_html($component_stats['number_of_files']); ?>
+            </td>
+            <td class="qm-nowrap">
+              <?php echo $component_stats['size_kb'] ?> KB
+            </td>
+          </tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Print detailed included files info -->
+    <div class="qm" id="<?php echo esc_attr($this->collector->id())?>-full">
       <table cellspacing="0">
         <thead>
           <tr>
@@ -32,13 +67,13 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
           </tr>
         </thead>
         <tbody>
-          <?php foreach($data['included_files'] as $file) : ?>
+          <?php foreach($data['included_files'] as $key => $file) : ?>
             <tr>
               <td class="qm-ltr">
                 <?php echo esc_html($file); ?>
               </td>
               <td class="qm-nowrap">
-                <?php echo QM_Util::get_file_component($file)->name; ?>
+                <?php echo $data['included_files_component'][$key]; ?>
               </td>
             </tr>
           <?php endforeach; ?>
