@@ -53,7 +53,7 @@ class QM_Collector_IncludedFiles extends QM_Collector {
       $this->data['total_filesize'] += $filesize;
       $this->data['stats'][$component]['number_of_files']++;
 
-      if($opcache_enabled) {
+      if($opcache_enabled && isset($this->data['stats'][$component]['opcache_size'])) {
           $this->data['stats'][$component]['opcache_size'] += $included_files_opcode_stats['scripts'][$included_file]['memory_consumption'];
           $this->data['total_opcache_filesize'] += $included_files_opcode_stats['scripts'][$included_file]['memory_consumption'];
       }
@@ -71,8 +71,9 @@ class QM_Collector_IncludedFiles extends QM_Collector {
     foreach($this->data['stats'] as $component => $values) {
       $this->data['stats'][$component]['size_kb'] = $this->format_bytes_to_kb($this->data['stats'][$component]['size'], 2);
 
-      if($opcache_enabled)
+      if($opcache_enabled && isset($this->data['stats'][$component])) {
         $this->data['stats'][$component]['opcache_size_kb'] = $this->format_bytes_to_kb($this->data['stats'][$component]['opcache_size'], 2);
+      }
     }
 
     //Convert totals

@@ -3,7 +3,7 @@ Contributors: khromov
 Tags: debugging, query monitor
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPL2
 
 Shows number of included files in admin bar and in the footer of each page load. Requires Query Monitor.
@@ -33,6 +33,10 @@ Install this plugin, install Query Monitor. Check the admin bar.
 1. None yet
 
 == Changelog ==
+
+= 1.4 =
+* Fixed a bug where not all stats were visible
+* Fixed a bug where notices were thrown in some OPcache configurations
 
 = 1.3 =
 * Added aggregated totals

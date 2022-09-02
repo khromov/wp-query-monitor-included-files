@@ -20,8 +20,9 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
     $data = $this->collector->get_data();
     $opcache_enabled = function_exists('opcache_get_status');
     ?>
-    <!-- Print total stats for included files -->
+    
     <div class="qm" id="<?php echo esc_attr($this->collector->id())?>">
+      <!-- Print total stats for included files -->
       <table cellspacing="0">
         <thead>
         <tr>
@@ -55,10 +56,8 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
         </tr>
         </tbody>
       </table>
-    </div>
 
-    <!-- Print stats for included files -->
-    <div class="qm" id="<?php echo esc_attr($this->collector->id())?>-aggregated">
+      <!-- Print stats for included files -->
       <table cellspacing="0">
         <thead>
         <tr>
@@ -90,7 +89,7 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
             </td>
             <td class="qm-nowrap">
               <?php
-              if($opcache_enabled)
+              if($opcache_enabled && isset($component_stats['opcache_size_kb']))
                 echo $component_stats['opcache_size_kb'] . " KB";
               else
                 echo "N/A";
@@ -99,13 +98,9 @@ class QM_Output_IncludedFiles extends QM_Output_Html {
           </tr>
         <?php endforeach; ?>
         </tbody>
-      </table>
-    </div>
+      </table>     
 
-
-
-    <!-- Print detailed included files info -->
-    <div class="qm" id="<?php echo esc_attr($this->collector->id())?>-full">
+      <!-- Print detailed included files info -->
       <table cellspacing="0">
         <thead>
           <tr>
